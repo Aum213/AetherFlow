@@ -7,7 +7,7 @@ The prototype uses static creator records in `src/data.js` and browser `localSto
 - `id`, `name`, `handle`, `location`, `avatar`, `bio`, `specialty`: creator identity and positioning.
 - `skills`, `tools`, `content`: declared matching terms (arrays of strings).
 - `formats`, `ratios`: supported delivery formats and aspect ratios.
-- `workflow`, `projects`: creator-described process and portfolio samples. A project contains `title`, `description`, `image`, plus the creator's declared `tools`, `workflow`, and `formats` as portfolio context. These are not verified per-project production logs.
+- `workflow`, `creativeIdentity`, `projects`: creator-described process, creative identity, and fictional demo portfolio samples. A project contains `title`, `description`, `image`, profile-context `tools`, `workflowStages`, `formats`, and `ratios`, plus a `caseStudy` with creative intent, human direction, iterations, final-selection rationale, commercial-use questions, and limited portfolio-focus terms. These notes are fictional, creator-described demo context; they are not project logs or independently verified claims.
 - `commercial`, `disclosure`: commercial-use availability and creator-declared terms.
 - Trust evidence is presented as creator declarations and demo portfolio evidence; it is not third-party verification.
 
@@ -21,7 +21,11 @@ An array of creator IDs. Add/remove actions update the stored array immediately.
 
 ## Matching
 
-`match()` in `src/App.jsx` compares a brief with declared creator data using weighted criteria: specialization/content type (25%), skills (25%), tools (15%), output format (8%), aspect ratio (7%), and commercial-use terms (20%). Skills and tools earn proportional points based on direct case-insensitive substring overlap; other criteria match against listed values. An omitted skills/tools or commercial-use constraint is not penalized. The profile breakdown shows criterion points and explanations. Scores indicate overlap only; they are not quality judgments, recommendations backed by outcome data, or endorsements.
+`match()` in `src/matching.js` compares a brief with creator-profile attributes using weighted criteria: specialization/content type (25%), skills (25%), tools (15%), output format (8%), aspect ratio (7%), and commercial-use terms (20%). Skills and tools earn proportional points based on case-insensitive substring overlap; the other criteria are binary against listed values. Only criteria specified by the brief count in the denominator. The score is the rounded sum of earned points divided by applicable weight, expressed as a percentage; omitted requirements are marked “Not specified” and excluded. `portfolioEvidence()` selects a representative demo project by overlap with its listed focus terms, then describes that evidence separately. It does not affect the score. Scores indicate attribute overlap only, not quality, endorsement, or guaranteed project fit.
+
+## “Behind the Generation” portfolio case file
+
+Selecting a project opens an accessible editorial detail modal with its sample image; creative intent; human direction; workflow stages; iteration and trade-off notes; final-selection rationale; declared toolkit; delivery capabilities; and commercial-use questions. The source data is fictional demo content. Profile tools and delivery capabilities are explicitly labelled as creator-declared context rather than a confirmed project log.
 
 ## Evidence labels
 
